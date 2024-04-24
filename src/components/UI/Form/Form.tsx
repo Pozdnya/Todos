@@ -4,10 +4,13 @@ import Input from "../Input/Input";
 import Button from "../Button/Button";
 import { ButtonTypeEnum } from "../../../types/enums"
 import { ITodo } from "../../../types/interfaces";
+import { useAppDispatch } from "../../../store/hooks";
+import { add } from "../../../store/features/todoSlice";
 
 const Form = () => {
   const [query, setQuery] = useState<string>('');
   const [inputError, setInputError] = useState<boolean>(false)
+  const dispatch = useAppDispatch()
 
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value)
@@ -16,7 +19,7 @@ const Form = () => {
 
   const submitHandler = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    
+
     if (!query) {
       setInputError(true)
       return;
@@ -28,8 +31,7 @@ const Form = () => {
       completed: false,
     }
 
-    console.log(newTodo);
-    //dispatch new todo
+    dispatch(add(newTodo))
 
     setQuery('')
   }
