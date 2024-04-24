@@ -1,13 +1,5 @@
-import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
 import './index.scss'
-import { HashRouter } from 'react-router-dom'
+import Root from './Root'
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <HashRouter>
-      <App />
-    </HashRouter>
-  </React.StrictMode>,
-)
+ReactDOM.createRoot(document.getElementById('root')!).render(<Root />)
