@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'Gochi';
+  src: url('../src/assets/fonts/GochiHand-Regular.ttf');
+}
+
+body {
+  font-family: "Gochi", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  width: 100%;
+  min-height: 100vh;
+}
