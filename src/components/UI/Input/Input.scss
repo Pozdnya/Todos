@@ -1,0 +1,23 @@
+.input {
+  width: 100%;
+
+  &__field {
+    width: 380px;
+    padding: 12px 20px;
+    border-radius: 10px;
+    border-color: $white-color;
+
+    &::placeholder {
+      font-family: "Gochi", sans-serif;
+      letter-spacing: 1px;
+    }
+
+    &:focus {
+      border-color: red;
+    }
+  }
+
+  &__error {
+    color: $danger-color;
+  }
+}
