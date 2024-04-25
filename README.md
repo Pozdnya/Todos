@@ -1,7 +1,7 @@
 # Todo App
 
 This project is a Todo application developed using React and TypeScript. It allows users to manage tasks across different stages of completion.
- [DEMO-LINK](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) 
+ [DEMO-LINK](https://pozdnya.github.io/todos/) 
 
 ## Available Scripts
 
