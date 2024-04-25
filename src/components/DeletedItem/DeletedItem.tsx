@@ -15,14 +15,16 @@ interface Props {
 }
 
 const DeletedItem: FC<Props> = ({ todo }) => {
-const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch()
 
-const onRestoreHandler = () => {
-  dispatch(restore(todo.id))
-}
+  const onRestoreHandler = () => {
+    dispatch(restore(todo.id))
+  }
 
   return (
-    <li className="todo">
+    <li className={cn("todo",
+      {"todo--checked": todo.completed}
+    )}>
       <div className="todo__content">
 
         <Input

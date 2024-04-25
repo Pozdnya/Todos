@@ -40,6 +40,7 @@ const TodoItem: FC<Props> = ({ todo }) => {
   const onEditHandler = () => {
     setIsEdited(!isEdited)
     dispatch(setTodoError(''))
+    setInputValue(todo.title)
   }
 
   const onUpdateInputHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -68,7 +69,9 @@ const TodoItem: FC<Props> = ({ todo }) => {
   }
 
   return (
-    <li className="todo">
+    <li className={cn("todo",
+      { "todo--checked": checked }
+    )}>
       <div className="todo__content">
 
         <Input
