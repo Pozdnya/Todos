@@ -1,20 +1,37 @@
 import { ChangeEvent, FC } from "react"
- 
-interface Props {
-  value: string;
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void
- }
+import cn from 'classnames'
+import { InputTypeEnum } from "../../../types/enums";
 
-const Input: FC<Props> = ({value, onChange}) => {
+interface Props {
+  value?: string;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+  type?: InputTypeEnum;
+  placeholder?: string;
+  classes?: string;
+  checked?: boolean;
+  disabled?: boolean;
+}
+
+const Input: FC<Props> = ({
+  value,
+  onChange,
+  type = 'text',
+  placeholder,
+  classes,
+  checked,
+  disabled,
+}) => {
 
   return (
     <div className="input">
       <input
-        type="text"
-        className="input__field"
-        placeholder="Enter todo"
+        type={type}
+        className={cn("input__field", classes)}
+        placeholder={placeholder}
         onChange={onChange}
         value={value}
+        checked={checked}
+        disabled={disabled}
       />
     </div>
   )

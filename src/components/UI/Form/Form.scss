@@ -8,6 +8,15 @@
   &__actions {
     display: flex;
     gap: 12px;
+
+    &-button {
+      min-width: 100px;
+    }
+
+    &-input {
+      width: 380px;
+      padding: 12px 20px;
+    }
   }
 
   &__error {

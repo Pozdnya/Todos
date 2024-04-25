@@ -39,8 +39,18 @@ const Form = () => {
   return (
     <form className="form" onSubmit={submitHandler}>
       <div className="form__actions">
-        <Input value={query} onChange={onChangeHandler} />
-        <Button type={ButtonTypeEnum.SUBMIT}>Add</Button>
+        <Input
+          value={query}
+          onChange={onChangeHandler}
+          placeholder="Enter todo"
+          classes="form__actions-input"
+        />
+        <Button
+          type={ButtonTypeEnum.SUBMIT}
+          classes="form__actions-button"
+        >
+          Add
+        </Button>
       </div>
       <div className="form__error">
         {inputError && <span className="form__error-message">Can't be empty</span>}

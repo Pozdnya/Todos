@@ -1,14 +1,12 @@
 .input {
-  width: 100%;
+  width: fit-content;
 
   &__field {
-    width: 380px;
-    padding: 12px 20px;
     border-radius: 10px;
     border-color: $white-color;
+    font-family: "Gochi", sans-serif;
 
     &::placeholder {
-      font-family: "Gochi", sans-serif;
       letter-spacing: 1px;
     }
 
