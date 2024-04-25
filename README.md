@@ -1,30 +1,38 @@
-# React + TypeScript + Vite
+# Todo App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a Todo application developed using React and TypeScript. It allows users to manage tasks across different stages of completion.
+ [DEMO-LINK](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) 
 
-Currently, two official plugins are available:
+## Available Scripts
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+In the project directory, you can run:
 
-## Expanding the ESLint configuration
+- `npm run dev` Runs the app in development mode using Vite.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- `npm run build` Builds the app for production, including type checking with TypeScript and bundling with Vite.
 
-- Configure the top-level `parserOptions` property like this:
+- `npm run lint` Runs ESLint to analyze the code for potential errors and enforce code style rules.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+- `npm run preview` Previews the production build locally using Vite.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- `npm run deploy` Deploys the app to GitHub Pages. It builds the app and publishes it to the dist folder.
+
+
+## Technologies Used
+- **React:** JavaScript library for building user interfaces.
+- **TypeScript:** Typed superset of JavaScript that compiles to plain JavaScript.
+- **React Router:** Library for creating SPA.
+- **Redux Toolkit:** State management library for React applications.
+- **Axios:** Promise-based HTTP client for making HTTP requests.
+- **UUID:** Library for generating unique identifiers.
+- **ESLint:** Tool for identifying and reporting on patterns found in JavaScript code.
+- **TypeScript ESLint:** ESLint plugin for TypeScript.
+- **Vite:** Build tool that focuses on frontend development.
+- **gh-pages:** Library for deploying to GitHub Pages.
+For a complete list of dependencies and devDependencies, refer to the package.json file.
+
+How to use?
+* Clone the repo `git clone` https://github.com/Pozdnya/todos.git using HTTPS or git@github.com:Pozdnya/todos.git using SSH
+* Set index to project folder `cd todo-app`
+* Install dependencies `npm install`
+* Run dev server `npm run dev`
