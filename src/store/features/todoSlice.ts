@@ -4,6 +4,7 @@ import { ITodo, ITodoState } from "../../types/interfaces";
 export const initialState: ITodoState = {
   todos: [],
   deletedTodos: [],
+  error: ''
 }
 
 export const todoSlice = createSlice({
@@ -12,6 +13,9 @@ export const todoSlice = createSlice({
   reducers: {
     add: (state, action: PayloadAction<ITodo>) => {
       state.todos.push(action.payload)
+    },
+    setError: (state, action: PayloadAction<string>) => {
+      state.error = action.payload
     },
     update: (state, action: PayloadAction<ITodo>) => {
       const index = state.todos.findIndex(todo => todo.id === action.payload.id)
@@ -23,6 +27,6 @@ export const todoSlice = createSlice({
   }
 })
 
-export const { add, update } = todoSlice.actions
+export const { add, setError, update } = todoSlice.actions
 
 export default todoSlice.reducer

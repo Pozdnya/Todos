@@ -7,4 +7,5 @@ export interface ITodo {
 export interface ITodoState {
   todos: ITodo[];
   deletedTodos: ITodo[];
+  error: string;
 }

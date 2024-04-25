@@ -1,11 +1,10 @@
 import { ChangeEvent, FC } from "react"
 import cn from 'classnames'
 import { InputTypeEnum } from "../../../types/enums";
-import { ITodo } from "../../../types/interfaces";
 
 interface Props {
   value?: string;
-  onChange?: (event?: ChangeEvent<HTMLInputElement>, todo?: ITodo) => void;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   type?: InputTypeEnum;
   placeholder?: string;
   classes?: string;
@@ -30,7 +29,7 @@ const Input: FC<Props> = ({
         className={cn("input__field", classes)}
         placeholder={placeholder}
         onChange={onChange}
-        value={value}
+        value={value && value}
         checked={checked}
         disabled={disabled}
       />
