@@ -11,7 +11,7 @@ import Input from "../UI/Input/Input";
 import Button from "../UI/Button/Button"
 
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { setError, update } from "../../store/features/todoSlice";
+import { update, setTodoError } from "../../store/features/todoSlice";
 import Error from "../Error/Error";
 
 interface Props {
@@ -21,9 +21,10 @@ interface Props {
 const TodoItem: FC<Props> = ({ todo }) => {
   const [checked, setChecked] = useState<boolean>(todo.completed)
   const [isEdited, setIsEdited] = useState<boolean>(false)
-  const [inputValue, setInputValue] = useState(todo.title)
+  const [inputValue, setInputValue] = useState<string>(todo.title)
+  const [selectedId, setSelectedId] = useState<string | null>(null)
   const dispatch = useAppDispatch()
-  const { error } = useAppSelector(state => state.todos)
+  const { todoError } = useAppSelector(state => state.todos)
 
   const onCheckHandler = () => {
     setChecked(!checked)
@@ -38,6 +39,7 @@ const TodoItem: FC<Props> = ({ todo }) => {
 
   const onEditHandler = () => {
     setIsEdited(!isEdited)
+    dispatch(setTodoError(''))
   }
 
   const onUpdateInputHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -45,8 +47,9 @@ const TodoItem: FC<Props> = ({ todo }) => {
   }
 
   const onCofirmUpdateInputValueHandler = () => {
+    setSelectedId(todo.id)
     if (!inputValue) {
-      dispatch(setError("Can't be empty"))
+      dispatch(setTodoError("Can't be empty"))
       return;
     }
 
@@ -57,7 +60,7 @@ const TodoItem: FC<Props> = ({ todo }) => {
 
     dispatch(update(updatedTodo))
     setIsEdited(false)
-    dispatch(setError(''))
+    dispatch(setTodoError(''))
   }
 
   return (
@@ -102,7 +105,9 @@ const TodoItem: FC<Props> = ({ todo }) => {
             </Button>
           </div>)}
       </div>
-      <Error error={error}>{error}</Error>
+      <div className="todo__error">
+        {selectedId === todo.id && <Error>{todoError}</Error>}
+      </div>
     </li>
   )
 }

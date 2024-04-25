@@ -5,24 +5,24 @@ import Button from "../Button/Button";
 import { ButtonTypeEnum } from "../../../types/enums"
 import { ITodo } from "../../../types/interfaces";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
-import { add, setError } from "../../../store/features/todoSlice";
+import { add, setInputError } from "../../../store/features/todoSlice";
 import Error from "../../Error/Error";
 
 const Form = () => {
   const [query, setQuery] = useState<string>('');
   const dispatch = useAppDispatch()
-  const { error } = useAppSelector(state => state.todos)
+  const { inputError } = useAppSelector(state => state.todos)
 
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value)
-    dispatch(setError(""))
+    dispatch(setInputError(""))
   }
 
   const submitHandler = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
     if (!query) {
-      dispatch(setError("Can't be empty"))
+      dispatch(setInputError("Can't be empty"))
       return;
     }
 
@@ -53,7 +53,9 @@ const Form = () => {
           Add
         </Button>
       </div>
-      <Error error={error}>{error}</Error>
+      <div className="form__error">
+        <Error>{inputError}</Error>
+      </div>
     </form>
   )
 }
