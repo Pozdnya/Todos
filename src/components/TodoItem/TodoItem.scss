@@ -37,6 +37,20 @@
   &__actions {
     display: flex;
     gap: 4px;
+
+    &-approve {
+      &:hover {
+        background-color: $success-color;
+        border-color: $success-color;
+      }
+    }
+
+    &-cancel {
+      &:hover {
+        background-color: $danger-color;
+        border-color: $danger-color;
+      }
+    }
   }
 
   &__error {

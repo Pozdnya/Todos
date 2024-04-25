@@ -25,8 +25,8 @@ const TodoItem: FC<Props> = ({ todo }) => {
   const [selectedId, setSelectedId] = useState<string | null>(null)
   const dispatch = useAppDispatch()
   const { todoError } = useAppSelector(state => state.todos)
-  
-  useEffect(() =>{
+
+  useEffect(() => {
     setChecked(todo.completed)
   }, [todo.completed])
 
@@ -110,11 +110,17 @@ const TodoItem: FC<Props> = ({ todo }) => {
           )
           : (
             <div className="todo__actions">
-              <Button onClick={onCofirmUpdateInputValueHandler}>
+              <Button
+                onClick={onCofirmUpdateInputValueHandler}
+                classes="todo__actions-approve"
+              >
                 <FaCheck />
               </Button>
 
-              <Button onClick={onEditHandler}>
+              <Button
+                onClick={onEditHandler}
+                classes="todo__actions-cancel"
+              >
                 <MdCancel />
               </Button>
             </div>
