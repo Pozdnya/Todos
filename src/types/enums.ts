@@ -14,3 +14,8 @@ export enum InputTypeEnum {
   RADIO = 'radio', 
   SELECT = 'select',
 }
+
+export enum TodoListModeEnum {
+  ACTIVE = 'active',
+  DELETED = 'deleted',
+}

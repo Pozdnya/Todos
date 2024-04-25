@@ -11,7 +11,7 @@ import Input from "../UI/Input/Input";
 import Button from "../UI/Button/Button"
 
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { update, setTodoError } from "../../store/features/todoSlice";
+import { update, setTodoError, remove } from "../../store/features/todoSlice";
 import Error from "../Error/Error";
 
 interface Props {
@@ -63,6 +63,10 @@ const TodoItem: FC<Props> = ({ todo }) => {
     dispatch(setTodoError(''))
   }
 
+  const onDeleteHandler = () => {
+    dispatch(remove(todo.id))
+  }
+
   return (
     <li className="todo">
       <div className="todo__content">
@@ -86,24 +90,28 @@ const TodoItem: FC<Props> = ({ todo }) => {
         </p>)}
 
         {!isEdited
-          ? (<div className="todo__actions">
-            <Button>
-              <MdOutlineDeleteForever />
-            </Button>
+          ? (
+            <div className="todo__actions">
+              <Button onClick={onDeleteHandler}>
+                <MdOutlineDeleteForever />
+              </Button>
 
-            <Button onClick={onEditHandler}>
-              <MdModeEdit />
-            </Button>
-          </div>)
-          : (<div className="todo__actions">
-            <Button onClick={onCofirmUpdateInputValueHandler}>
-              <FaCheck />
-            </Button>
+              <Button onClick={onEditHandler}>
+                <MdModeEdit />
+              </Button>
+            </div>
+          )
+          : (
+            <div className="todo__actions">
+              <Button onClick={onCofirmUpdateInputValueHandler}>
+                <FaCheck />
+              </Button>
 
-            <Button onClick={onEditHandler}>
-              <MdCancel />
-            </Button>
-          </div>)}
+              <Button onClick={onEditHandler}>
+                <MdCancel />
+              </Button>
+            </div>
+          )}
       </div>
       <div className="todo__error">
         {selectedId === todo.id && <Error>{todoError}</Error>}

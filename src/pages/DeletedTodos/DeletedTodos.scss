@@ -1,7 +1,8 @@
 .del-todos {
   width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 
   &__title {
     color: $white-color;
