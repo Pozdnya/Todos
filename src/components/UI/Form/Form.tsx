@@ -7,6 +7,7 @@ import { ITodo } from "../../../types/interfaces";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { add, setInputError } from "../../../store/features/todoSlice";
 import Error from "../../Error/Error";
+import { fetchTodos } from "../../../store/actions/actions";
 
 const Form = () => {
   const [query, setQuery] = useState<string>('');
@@ -37,6 +38,10 @@ const Form = () => {
     setQuery('')
   }
 
+  const onFetchTodos = () => {
+    dispatch(fetchTodos())
+  }
+
   return (
     <form className="form" onSubmit={submitHandler}>
       <div className="form__actions">
@@ -51,6 +56,12 @@ const Form = () => {
           classes="form__actions-button"
         >
           Add
+        </Button>
+        <Button
+          classes="form__actions-button"
+          onClick={onFetchTodos}
+        >
+          Load Todos
         </Button>
       </div>
       <div className="form__error">

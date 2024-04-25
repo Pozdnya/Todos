@@ -1,11 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ITodo, ITodoState } from "../../types/interfaces";
+import { fetchTodos } from "../actions/actions";
 
 export const initialState: ITodoState = {
   todos: [],
   deletedTodos: [],
   inputError: '',
-  todoError: ''
+  todoError: '',
+  isLoading: false,
+  loadingError: ''
 }
 
 export const todoSlice = createSlice({
@@ -13,7 +16,7 @@ export const todoSlice = createSlice({
   initialState,
   reducers: {
     add: (state, action: PayloadAction<ITodo>) => {
-      state.todos.push(action.payload)
+      state.todos.unshift(action.payload)
     },
     setInputError: (state, action: PayloadAction<string>) => {
       state.inputError = action.payload
@@ -72,7 +75,22 @@ export const todoSlice = createSlice({
       state.todos.push(...uncompletedTodos)
       state.deletedTodos = state.deletedTodos.filter(todo => todo.completed)
     }
-  }
+  },
+  extraReducers(builder) {
+    builder
+      .addCase(fetchTodos.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchTodos.fulfilled, (state, action: PayloadAction<ITodo[]>) => {
+        state.isLoading = false;
+        state.todos = [...state.todos, ...action.payload];
+        state.loadingError = '';
+      })
+      .addCase(fetchTodos.rejected, (state, action) => {
+        state.loadingError = action.error.message || '';
+        state.isLoading = false;
+      })
+  },
 })
 
 export const {

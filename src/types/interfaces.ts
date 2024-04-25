@@ -9,4 +9,6 @@ export interface ITodoState {
   deletedTodos: ITodo[];
   inputError: string;
   todoError: string;
+  loadingError: string;
+  isLoading: boolean;
 }
