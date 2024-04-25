@@ -10,6 +10,7 @@ interface Props {
   classes?: string;
   checked?: boolean;
   disabled?: boolean;
+  id?: string;
 }
 
 const Input: FC<Props> = ({
@@ -20,6 +21,7 @@ const Input: FC<Props> = ({
   classes,
   checked,
   disabled,
+  id,
 }) => {
 
   return (
@@ -32,6 +34,7 @@ const Input: FC<Props> = ({
         value={value && value}
         checked={checked}
         disabled={disabled}
+        id={id}
       />
     </div>
   )

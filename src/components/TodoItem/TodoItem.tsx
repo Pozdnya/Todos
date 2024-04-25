@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useState } from "react"
+import { ChangeEvent, FC, useEffect, useState } from "react"
 import cn from 'classnames';
 
 import { ITodo } from "../../types/interfaces"
@@ -19,12 +19,16 @@ interface Props {
 }
 
 const TodoItem: FC<Props> = ({ todo }) => {
-  const [checked, setChecked] = useState<boolean>(todo.completed)
+  const [checked, setChecked] = useState<boolean>(false)
   const [isEdited, setIsEdited] = useState<boolean>(false)
   const [inputValue, setInputValue] = useState<string>(todo.title)
   const [selectedId, setSelectedId] = useState<string | null>(null)
   const dispatch = useAppDispatch()
   const { todoError } = useAppSelector(state => state.todos)
+  
+  useEffect(() =>{
+    setChecked(todo.completed)
+  }, [todo.completed])
 
   const onCheckHandler = () => {
     setChecked(!checked)

@@ -1,0 +1,28 @@
+.actions-board {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  border-radius: 10px;
+  background-color: $primary-color;
+
+  &__input {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 8px;
+
+    &-label {
+      color: $white-color;
+
+      &--selected {
+        color: $danger-color;
+      }
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: 8px;
+  }
+}

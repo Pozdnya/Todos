@@ -46,6 +46,32 @@ export const todoSlice = createSlice({
 
       state.deletedTodos = state.deletedTodos.filter(todo => todo.id !== action.payload)
     },
+    toggleAll: (state, action: PayloadAction<boolean>) => {
+      const toggledTodos = state.todos.map(todo => ({
+        ...todo,
+        completed: action.payload
+      }))
+
+      state.todos = toggledTodos
+    },
+    removeAll: (state) => {
+      state.deletedTodos = [...state.deletedTodos, ...state.todos]
+      state.todos = [];
+    },
+    removeCompleted: (state) => {
+      const completedTodo = state.todos.filter(todo => todo.completed)
+      state.todos = state.todos.filter(todo => !todo.completed)
+      state.deletedTodos.push(...completedTodo)
+    },
+    restoreAll: (state) => {
+      state.todos.push(...state.deletedTodos)
+      state.deletedTodos = []
+    },
+    restoreAllUncomplited: (state) => {
+      const uncompletedTodos = state.deletedTodos.filter(todo => !todo.completed)
+      state.todos.push(...uncompletedTodos)
+      state.deletedTodos = state.deletedTodos.filter(todo => todo.completed)
+    }
   }
 })
 
@@ -56,6 +82,11 @@ export const {
   setTodoError,
   remove,
   restore,
+  toggleAll,
+  removeAll,
+  removeCompleted,
+  restoreAll,
+  restoreAllUncomplited,
 } = todoSlice.actions
 
 export default todoSlice.reducer
