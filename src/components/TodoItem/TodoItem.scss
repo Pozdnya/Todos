@@ -13,10 +13,23 @@
     width: 380px;
     padding: 12px 20px;
     color: $white-color;
+    word-wrap: break-word;
+    letter-spacing: 2px;
+    font-size: 20px;
+
+    &--checked {
+      text-decoration: line-through;
+      color: $danger-color;
+    }
 
     &:disabled {
       background-color: $primary-color;
       border: none;
     }
+  }
+
+  &__actions {
+    display: flex;
+    gap: 4px;
   }
 }

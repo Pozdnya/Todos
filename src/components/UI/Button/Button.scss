@@ -6,6 +6,9 @@
   transition: background-color .3s,
   border-color .3s,
   color .3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &:hover {
     cursor: pointer;
