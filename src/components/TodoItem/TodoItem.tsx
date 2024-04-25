@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useEffect, useState } from "react"
+import { ChangeEvent, FC, useCallback, useEffect, useState } from "react"
 import cn from 'classnames';
 
 import { ITodo } from "../../types/interfaces"
@@ -30,7 +30,7 @@ const TodoItem: FC<Props> = ({ todo }) => {
     setChecked(todo.completed)
   }, [todo.completed])
 
-  const onCheckHandler = () => {
+  const onCheckHandler = useCallback(() => {
     setChecked(!checked)
 
     const updatedTodo = {
@@ -39,19 +39,19 @@ const TodoItem: FC<Props> = ({ todo }) => {
     }
 
     dispatch(update(updatedTodo))
-  }
+  }, [dispatch, checked, todo])
 
-  const onEditHandler = () => {
+  const onEditHandler = useCallback(() => {
     setIsEdited(!isEdited)
     dispatch(setTodoError(''))
     setInputValue(todo.title)
-  }
+  }, [dispatch, isEdited, todo.title])
 
-  const onUpdateInputHandler = (event: ChangeEvent<HTMLInputElement>) => {
+  const onUpdateInputHandler = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value)
-  }
+  }, [])
 
-  const onCofirmUpdateInputValueHandler = () => {
+  const onCofirmUpdateInputValueHandler = useCallback(() => {
     setSelectedId(todo.id)
     if (!inputValue) {
       dispatch(setTodoError("Can't be empty"))
@@ -66,11 +66,11 @@ const TodoItem: FC<Props> = ({ todo }) => {
     dispatch(update(updatedTodo))
     setIsEdited(false)
     dispatch(setTodoError(''))
-  }
+  }, [dispatch, inputValue, todo])
 
-  const onDeleteHandler = () => {
+  const onDeleteHandler = useCallback(() => {
     dispatch(remove(todo.id))
-  }
+  }, [dispatch, todo.id])
 
   return (
     <li className={cn("todo",

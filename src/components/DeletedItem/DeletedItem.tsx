@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useCallback } from "react"
 import cn from 'classnames';
 import { FaTrashRestore } from "react-icons/fa";
 
@@ -17,9 +17,9 @@ interface Props {
 const DeletedItem: FC<Props> = ({ todo }) => {
   const dispatch = useAppDispatch()
 
-  const onRestoreHandler = () => {
+  const onRestoreHandler = useCallback(() => {
     dispatch(restore(todo.id))
-  }
+  }, [dispatch, todo.id])
 
   return (
     <li className={cn("todo",

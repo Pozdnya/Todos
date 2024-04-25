@@ -10,8 +10,10 @@ interface Props {
 }
 
 const TodoList: FC<Props> = ({ mode }) => {
+  const isActiveMode = mode === TodoListModeEnum.ACTIVE
+  const isDeletedMode = mode === TodoListModeEnum.DELETED
   const todos = useAppSelector(
-    state => (mode === TodoListModeEnum.ACTIVE) ? state.todos.todos : state.todos.deletedTodos
+    state => isActiveMode ? state.todos.todos : state.todos.deletedTodos
   )
 
   return (
@@ -22,8 +24,8 @@ const TodoList: FC<Props> = ({ mode }) => {
 
       {!!todos.length && (
         <>
-          {(mode === TodoListModeEnum.ACTIVE) && <ActionsBoard mode={TodoListModeEnum.ACTIVE} />}
-          {(mode === TodoListModeEnum.DELETED) && <ActionsBoard mode={TodoListModeEnum.DELETED} />}
+          {isActiveMode && <ActionsBoard mode={TodoListModeEnum.ACTIVE} />}
+          {isDeletedMode && <ActionsBoard mode={TodoListModeEnum.DELETED} />}
           <ul className="todo-list__content">
             {todos.map(todo =>
               (mode === TodoListModeEnum.ACTIVE)

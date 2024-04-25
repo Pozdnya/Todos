@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useState } from "react"
+import { ChangeEvent, FormEvent, useCallback, useState } from "react"
 import { v4 as uuidv4 } from 'uuid';
 import Input from "../Input/Input";
 import Button from "../Button/Button";
@@ -14,12 +14,12 @@ const Form = () => {
   const dispatch = useAppDispatch()
   const { inputError } = useAppSelector(state => state.todos)
 
-  const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+  const onChangeHandler = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value)
     dispatch(setInputError(""))
-  }
+  }, [dispatch])
 
-  const submitHandler = (event: FormEvent<HTMLFormElement>) => {
+  const submitHandler = useCallback((event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
     if (!query) {
@@ -36,11 +36,11 @@ const Form = () => {
     dispatch(add(newTodo))
 
     setQuery('')
-  }
+  }, [dispatch, query])
 
-  const onFetchTodos = () => {
+  const onFetchTodos = useCallback(() => {
     dispatch(fetchTodos())
-  }
+  }, [dispatch])
 
   return (
     <form className="form" onSubmit={submitHandler}>
